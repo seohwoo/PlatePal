@@ -9,11 +9,15 @@ import React from "react";
 import colors from "../../config/Restaurant/colors";
 import SPACING from "../../config/SPACING";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
+  const pressHandler = () => {
+    navigation.navigate("Home");
+  };
+
   return (
     <ImageBackground
       style={{ flex: 1 }}
-      source={require("../../assets/pexels-william-choquette-2641886.jpeg")}
+      source={require("../../assets/restaurant/brooke-lark-jUPOXXRNdcA-unsplash.jpeg")}
     >
       <View style={{ flex: 1, backgroundColor: colors.black, opacity: 0.2 }} />
       <View
@@ -36,7 +40,7 @@ const WelcomeScreen = () => {
               textTransform: "capitalize",
             }}
           >
-            Let your favorite food find you
+            Plate Pal
           </Text>
           <Text
             style={{
@@ -45,7 +49,7 @@ const WelcomeScreen = () => {
               fontSize: SPACING * 1.7,
             }}
           >
-            Dolore reprehenderit id ea eu voluptate deserunt occaecat occaecat.
+            You can find the recipe for the food you want through chat-gpt!
           </Text>
           <TouchableOpacity
             style={{
@@ -55,6 +59,7 @@ const WelcomeScreen = () => {
               alignItems: "center",
               marginTop: SPACING * 3,
             }}
+            onPress={pressHandler}
           >
             <Text
               style={{
@@ -63,7 +68,7 @@ const WelcomeScreen = () => {
                 fontWeight: "700",
               }}
             >
-              Explorer Now
+              Start Now
             </Text>
           </TouchableOpacity>
         </View>
