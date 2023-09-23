@@ -1,20 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import RecipeDetailScreen from "./Screen/Restaurant/RecipeDetailScreen";
+import DATA from "./config/Restaurant/DATA";
+import HomeScreen from "./Screen/Restaurant/HomeScreen";
+import WelcomeScreen from "./Screen/Restaurant/WelcomeScreen";
+const App = () => {
+  return <WelcomeScreen />;
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  //<HomeScreen />
+  //<RecipeDetailScreen recipe={DATA[0].recipes[1]} />
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
