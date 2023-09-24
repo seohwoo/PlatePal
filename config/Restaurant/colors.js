@@ -10,6 +10,8 @@ const colors = {
   themeDark: "#0C0F14",
   theme: "#f3f6fc",
   ingredient: "rgb(25,183,194)",
+  list: "#a3a1a5",
+  listBorder: "#8d95e4",
 };
 
 export default colors;

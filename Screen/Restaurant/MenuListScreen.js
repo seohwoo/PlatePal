@@ -41,31 +41,38 @@ const MenuListScreen = ({ route, navigation }) => {
   const menuInfo = splitMenuName(MenuName);
 
   useEffect(() => {
-    // 메뉴 이름 분리
     const KAKAO_API_KEY = KAKAO_API;
-    if (menuInfo) {
+    if (menuInfo && menuInfo.length > 0 && menuList.length === 0) {
       // 카카오 이미지 검색 API 호출
       const searchMenuImages = async () => {
         try {
-          const menuImages = [];
-          for (const menu of menuInfo) {
-            const response = await axios.get(
-              `https://dapi.kakao.com/v2/search/image?query=${menu.name}`,
-              {
-                headers: {
-                  Authorization: `KakaoAK ${KAKAO_API_KEY}`,
-                },
-              }
-            );
-            const imageData = {
-              name: menu.name,
-              image: response.data.documents[0]?.image_url, // 첫 번째 이미지 URL 가져오기
-              ingredients: menu.ing,
-            };
-            menuImages.push(imageData);
-            //요청 후 1초 대기 (요청 간격 조절)
-            await new Promise((resolve) => setTimeout(resolve, 500));
-          }
+          const menuImages = await Promise.all(
+            menuInfo.map(async (menu) => {
+              // 요청 전에 로그를 남깁니다.
+              console.log(`이미지 요청: ${menu.name}`);
+
+              const response = await axios.get(
+                `https://dapi.kakao.com/v2/search/image?query=${menu.name}`,
+                {
+                  headers: {
+                    Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+                  },
+                }
+              );
+
+              // 요청 후에 로그를 남깁니다.
+              console.log(`이미지 응답: ${menu.name}`);
+
+              const imageData = {
+                name: menu.name,
+                image: response.data.documents[0]?.image_url, // 이미지 URL 가져오기
+                ingredients: menu.ing,
+              };
+              // 요청 후 대기 (요청 간격 조절)
+              await new Promise((resolve) => setTimeout(resolve, 10));
+              return imageData;
+            })
+          );
           setMenuList(menuImages);
         } catch (error) {
           console.error("Error fetching menu images:", error);
@@ -75,7 +82,7 @@ const MenuListScreen = ({ route, navigation }) => {
       // API 호출
       searchMenuImages();
     }
-  }, [menuInfo]);
+  }, [menuInfo, menuList]);
 
   const handleMenuClick = (menu) => {
     // 메뉴 정보를 RecipeScreen으로 네비게이션하면서 전달
