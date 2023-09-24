@@ -6,6 +6,7 @@ import HomeScreen from "./Screen/Restaurant/HomeScreen";
 import WelcomeScreen from "./Screen/Restaurant/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MenuListScreen from "./Screen/Restaurant/MenuListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ const App = () => {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MenuList"
+            component={MenuListScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

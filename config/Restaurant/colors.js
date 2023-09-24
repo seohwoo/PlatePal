@@ -7,6 +7,9 @@ const colors = {
   white: "#fff",
   blue: "rgb(90,103,234)",
   input: "rgb(231,231,234)",
+  themeDark: "#0C0F14",
+  theme: "#f3f6fc",
+  ingredient: "rgb(25,183,194)",
 };
 
 export default colors;
