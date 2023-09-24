@@ -31,6 +31,11 @@ const App = () => {
             component={MenuListScreen}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="RecipeDetail"
+            component={RecipeDetailScreen}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

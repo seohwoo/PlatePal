@@ -18,6 +18,7 @@ import colors from "../../config/Restaurant/colors";
 import GPTLoadingScreen from "./GPTLoadingScreen";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
+import { GPT_API } from "../../api_key";
 
 const { width } = Dimensions.get("window");
 
@@ -52,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
 
   const fetchMenuName = async (ingredients) => {
     try {
-      const api_key = "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";
+      const api_key = GPT_API;
       const messages = [
         { role: "system", content: "You are a helpful assistant." },
         {
