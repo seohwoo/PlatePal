@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Dimensions,
   Alert,
 } from "react-native";
 import React, { useState } from "react";
@@ -15,17 +14,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import SPACING from "../../config/SPACING";
 import colors from "../../config/Restaurant/colors";
-import GPTLoadingScreen from "./GPTLoadingScreen";
+import LoadingScreen from "./LoadingScreen";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import { GPT_API } from "../../api_key";
 
-const { width } = Dimensions.get("window");
-
-const ITEM_WIDTH = width / 2 - SPACING * 3;
-
 const HomeScreen = ({ navigation }) => {
-  const [activeCategory, setActiveCategory] = useState(0);
   const pressHandler = () => {
     navigation.navigate("Welcome");
   };
@@ -137,10 +131,10 @@ const HomeScreen = ({ navigation }) => {
   ));
   return (
     <SafeAreaView style={{ backgroundColor: colors.theme, flex: 1 }}>
-      <ScrollView>
-        {loading ? (
-          <GPTLoadingScreen />
-        ) : (
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <ScrollView>
           <View style={{ padding: SPACING * 2 }}>
             <View
               style={{
@@ -192,7 +186,7 @@ const HomeScreen = ({ navigation }) => {
                   color: colors.black,
                 }}
               >
-                Enter all the ingredients you have now
+                가지고 있는 재료를 {"\n"}모두 입력해주세요
               </Text>
             </View>
             <View
@@ -214,7 +208,7 @@ const HomeScreen = ({ navigation }) => {
               <TextInput
                 value={enterValue}
                 onChangeText={(text) => setEnterValue(text)}
-                placeholder="Want to .."
+                placeholder="재료를 입력해주세요.."
                 placeholderTextColor={colors.gray}
                 style={{
                   color: colors.gray,
@@ -224,12 +218,9 @@ const HomeScreen = ({ navigation }) => {
                 onSubmitEditing={addIngredient}
               />
             </View>
-            <View
-              style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 10 }}
-            >
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               {ingredientList}
             </View>
-
             <LinearGradient colors={[colors.theme, colors.theme]}>
               <TouchableOpacity
                 style={{
@@ -252,7 +243,7 @@ const HomeScreen = ({ navigation }) => {
                     marginLeft: SPACING * 7,
                   }}
                 >
-                  Search Recipes
+                  메뉴 검색
                 </Text>
                 <Ionicons
                   name="arrow-forward"
@@ -262,8 +253,8 @@ const HomeScreen = ({ navigation }) => {
               </TouchableOpacity>
             </LinearGradient>
           </View>
-        )}
-      </ScrollView>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };

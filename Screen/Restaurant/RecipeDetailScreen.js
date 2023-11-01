@@ -1,7 +1,6 @@
 import {
   Dimensions,
   ImageBackground,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -18,8 +17,9 @@ import { Ionicons } from "@expo/vector-icons";
 import colors from "../../config/Restaurant/colors";
 import { RECIPE_LOGO } from "../../assets/logo";
 import { GPT_API } from "../../api_key";
-import GPTLoadingScreen from "./GPTLoadingScreen";
+import LoadingScreen from "./LoadingScreen";
 import axios from "axios";
+import RecipeLoadingScreen from "./RecipeLoadingScreen";
 
 const RecipeDetailScreen = ({ route, navigation }) => {
   const { menu } = route.params;
@@ -120,7 +120,7 @@ const RecipeDetailScreen = ({ route, navigation }) => {
   return (
     <>
       {loading ? (
-        <GPTLoadingScreen />
+        <RecipeLoadingScreen />
       ) : (
         <ScrollView>
           <ImageBackground
@@ -186,6 +186,8 @@ const RecipeDetailScreen = ({ route, navigation }) => {
                   marginBottom: SPACING * 3,
                   paddingRight: SPACING,
                   alignItems: "center",
+                  justifyContent: "center",
+                  marginLeft: SPACING,
                 }}
               >
                 <View>
@@ -194,77 +196,15 @@ const RecipeDetailScreen = ({ route, navigation }) => {
                       fontSize: SPACING * 3,
                       color: colors.black,
                       fontWeight: "700",
+                      textAlign: "center",
                     }}
                   >
                     {menu.name}
                   </Text>
                 </View>
               </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginBottom: SPACING * 2,
-                  paddingLeft: SPACING,
-                  paddingRight: SPACING,
-                }}
-              >
-                <View
-                  style={{
-                    padding: SPACING,
-                    paddingHorizontal: SPACING * 2,
-                    backgroundColor: colors.light,
-                    flexDirection: "row",
-                    borderRadius: SPACING,
-                    alignItems: "center",
-                  }}
-                >
-                  <Ionicons
-                    name="time"
-                    color={colors.gray}
-                    size={SPACING * 1.7}
-                  />
-                  <Text
-                    style={{
-                      fontSize: SPACING * 1.6,
-                      fontWeight: "600",
-                      marginLeft: SPACING / 2,
-                      color: colors.gray,
-                    }}
-                  >
-                    15 min
-                  </Text>
-                </View>
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      padding: SPACING,
-                      paddingHorizontal: SPACING * 3,
-                      backgroundColor: colors.yellow,
-                      flexDirection: "row",
-                      borderRadius: SPACING,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Ionicons
-                      name="star"
-                      color={colors.black}
-                      size={SPACING * 1.7}
-                    />
-                    <Text
-                      style={{
-                        fontSize: SPACING * 1.6,
-                        fontWeight: "600",
-                        marginLeft: SPACING / 2,
-                        color: colors.black,
-                      }}
-                    >
-                      share
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-                {/* <View
+
+              {/* <View
                 style={{
                   padding: SPACING,
                   paddingHorizontal: SPACING * 2,
@@ -291,7 +231,7 @@ const RecipeDetailScreen = ({ route, navigation }) => {
                   8 min
                 </Text>
               </View> */}
-                {/* <View
+              {/* <View
                 style={{
                   padding: SPACING,
                   paddingHorizontal: SPACING * 2,
@@ -318,7 +258,7 @@ const RecipeDetailScreen = ({ route, navigation }) => {
                   4 min
                 </Text>
               </View> */}
-              </View>
+
               {/* <View style={{ marginVertical: SPACING * 3 }}>
               <Text
                 style={{
@@ -410,6 +350,7 @@ const RecipeDetailScreen = ({ route, navigation }) => {
                     marginHorizontal: SPACING * 1.2,
                     marginVertical: SPACING * 0.4,
                     width: "90%",
+                    marginTop: SPACING * 2,
                   }}
                 >
                   <Text

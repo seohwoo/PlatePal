@@ -49,7 +49,7 @@ const WelcomeScreen = ({ navigation }) => {
               fontSize: SPACING * 1.7,
             }}
           >
-            You can find the recipe for the food you want through chat-gpt!
+            ChatGPT를 통해 원하는 {'\n'}음식의 레시피를 만나보실 수 있어요!
           </Text>
           <TouchableOpacity
             style={{

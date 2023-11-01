@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import axios from "axios";
 import colors from "../../config/Restaurant/colors";
-import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import SPACING from "../../config/SPACING";
 import { KAKAO_API } from "../../api_key";
@@ -138,10 +137,20 @@ const MenuListScreen = ({ route, navigation }) => {
               fontSize: SPACING * 3,
               fontWeight: "700",
               color: colors.black,
-              marginBottom: SPACING * 4,
+              marginBottom: SPACING * 0.5,
             }}
           >
-            It's a menu that can be made with current ingredients.
+            현재의 재료로 만들 수 있는 메뉴입니다.
+          </Text>
+          <Text
+            style={{
+              fontSize: SPACING * 1.6,
+              fontWeight: "500",
+              color: colors.gray,
+              marginBottom: SPACING * 3,
+            }}
+          >
+            원하는 메뉴를 눌러주세요.
           </Text>
         </View>
         <FlatList
